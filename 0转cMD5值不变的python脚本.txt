@@ -1,0 +1,13 @@
+import hashlib
+
+def makemd5(s):
+    return hashlib.md5(s.encode('utf-8')).hexdigest()
+
+s = '0123456789c'
+
+for i in range(10000000):
+    md5 = makemd5(str(i))
+    if md5[0:2] == 'ce' or md5[0:2] == '0e':
+        if all(map(lambda x: x in s, md5[2:])):
+            print(str(i)+"   "+md5)
+            break       
